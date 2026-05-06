@@ -1,0 +1,21 @@
+resources:
+  pipelines:
+    dbdemos_pipeline_bike_icalvo_hackaton_ws_catalog_ivandb2:
+      name: dbdemos_pipeline_bike_icalvo_hackaton_ws_catalog_ivandb2
+      catalog: ${var.catalog}
+      schema: ${var.schema}
+      edition: ADVANCED
+      channel: CURRENT
+      photon: true
+      serverless: true
+      development: true
+      configuration:
+        catalog: ${var.catalog}
+        schema: ${var.schema}
+      libraries:
+        - file:
+            path: ../../src/dbdemos_pipeline_bike_icalvo_hackaton_ws_catalog_ivandb2/01-bronze.sql
+        - file:
+            path: ../../src/dbdemos_pipeline_bike_icalvo_hackaton_ws_catalog_ivandb2/02-silver.sql
+        - file:
+            path: ../../src/dbdemos_pipeline_bike_icalvo_hackaton_ws_catalog_ivandb2/03-gold.sql
