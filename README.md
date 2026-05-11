@@ -5,7 +5,7 @@ Databricks Asset Bundle (DABs) project.
 ## Layout
 
 - `databricks.yml` — bundle entrypoint and target definitions.
-- `resources/` — one YAML per Databricks resource (jobs, pipelines, etc.).
+- `resources/` — one YAML per Databricks resource (jobs, pipelines, alerts, sql_warehouses).
 - `src/` — source code grouped by the asset that owns it.
 - `tests/` — pytest unit tests.
 - `.github/workflows/` — CI/CD pipelines for GitHub Actions.
@@ -32,7 +32,9 @@ Production deploys run through CI only — never `databricks bundle deploy -t pr
 
 Before the first deploy, replace these in `databricks.yml`:
 
-- `${var.staging_sp_app_id}` and `${var.prod_sp_app_id}` — service principal application IDs for staging and prod
+- `${var.staging_sp_app_id}` and `${var.prod_sp_app_id}` — service principal application IDs for run_as
+- `${var.catalog}` — defaults to `icalvo_hackaton_ws_catalog`
+- `${var.schema}` — defaults to `ivandb2`
 
 ## CI/CD secrets
 
@@ -45,3 +47,12 @@ Configure these in your GitHub repository's secret store (never commit them):
 - `schema` — Unity Catalog schema name (mapped to `BUNDLE_VAR_schema` in the pipeline)
 
 `DATABRICKS_BUNDLE_ENV` is hardcoded per pipeline step (`staging` or `prod`) and tells the CLI which target to deploy to.
+
+## Migrated assets
+
+| Asset Type | Name |
+|---|---|
+| Job | dbdemos_job_bike_init_ivan_calvo |
+| Pipeline | dbdemos_pipeline_bike_icalvo_hackaton_ws_catalog_ivandb2 |
+| Alert | jobs_and_pipelines_failed |
+| SQL Warehouse | Serverless Starter Warehouse |
