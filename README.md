@@ -32,14 +32,16 @@ Production deploys run through CI only — never `databricks bundle deploy -t pr
 
 Before the first deploy, replace these in `databricks.yml`:
 
-- `${var.staging_sp_app_id}` and `${var.prod_sp_app_id}` — service principal application IDs for staging/prod targets
+- `${var.staging_sp_app_id}` and `${var.prod_sp_app_id}` — service principal application IDs for staging and prod
 
 ## CI/CD secrets
 
-Configure these in GitHub repo settings (never commit them):
+Configure these in your GitHub repository's secret store (never commit them):
 
 - `DATABRICKS_HOST` — workspace URL (store as an environment-scoped secret so staging and prod each supply their own value)
 - `DATABRICKS_CLIENT_ID` — service principal application (client) ID
 - `DATABRICKS_CLIENT_SECRET` — service principal client secret
 - `catalog` — Unity Catalog catalog name (mapped to `BUNDLE_VAR_catalog` in the pipeline)
 - `schema` — Unity Catalog schema name (mapped to `BUNDLE_VAR_schema` in the pipeline)
+
+`DATABRICKS_BUNDLE_ENV` is hardcoded per pipeline step (`staging` or `prod`) and tells the CLI which target to deploy to.

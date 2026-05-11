@@ -1,5 +1,0 @@
-resources:
-  schemas:
-    projectx_bronze:
-      catalog_name: ${var.catalog}
-      name: projectx_bronze
