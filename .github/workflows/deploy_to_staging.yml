@@ -18,9 +18,9 @@ jobs:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
           DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
-          DATABRICKS_BUNDLE_ENV: ${{ vars.environment }}
-          BUNDLE_VAR_catalog: ${{ vars.catalog }}
-          BUNDLE_VAR_schema: ${{ vars.schema }}
+          DATABRICKS_BUNDLE_ENV: ${{ vars.ENVIRONMENT }}
+          BUNDLE_VAR_catalog: ${{ vars.CATALOG }}
+          BUNDLE_VAR_schema: ${{ vars.SCHEMA }}
         run: databricks bundle validate --output json
 
       - name: Deploy bundle
@@ -28,7 +28,7 @@ jobs:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
           DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
-          DATABRICKS_BUNDLE_ENV: ${{ vars.environment }}
-          BUNDLE_VAR_catalog: ${{ vars.catalog }}
-          BUNDLE_VAR_schema: ${{ vars.schema }}
+          DATABRICKS_BUNDLE_ENV: ${{ vars.ENVIRONMENT }}
+          BUNDLE_VAR_catalog: ${{ vars.CATALOG }}
+          BUNDLE_VAR_schema: ${{ vars.SCHEMA }}
         run: databricks bundle deploy
